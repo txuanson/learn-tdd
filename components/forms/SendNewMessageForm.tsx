@@ -9,9 +9,7 @@ export default function SendNewMessageForm() {
 
     const onButtonClick = () => {
         setOutputTexts([...outputTexts, inputText])
-        setInputText("");
-        console.log(inputText);
-        
+        setInputText("");        
     }
 
     return (

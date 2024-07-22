@@ -1,12 +1,7 @@
+import React from 'react';
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SendNewMessageForm from './SendNewMessageForm';
-
-const delayFn = (ttl) => {
-  return new Promise((res, rej) => {
-    setTimeout(() => res(), ttl);
-  })
-}
 
 describe('<NewMessageForm />', () => {
   describe('clicking the send button', () => {
@@ -22,7 +17,12 @@ describe('<NewMessageForm />', () => {
 
     it('clears the text field', async () => {
       await sendMessage();
-      expect(screen.getByTestId('messageText').value).toEqual('');
+      expect(screen.getByTestId<HTMLInputElement>('messageText').value).toEqual('');
     });
+
+    it('the message appear on the screen', async () => {
+      await sendMessage();
+      expect(screen.findAllByText('New message'))
+    })
   });
 });
